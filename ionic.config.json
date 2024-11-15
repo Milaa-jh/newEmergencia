@@ -1,7 +1,7 @@
 {
-  "name": "SOS",
+  "name": "EmergenciaApp",
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular-standalone"
 }

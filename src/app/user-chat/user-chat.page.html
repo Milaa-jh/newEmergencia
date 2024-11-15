@@ -1,0 +1,33 @@
+<ion-content class="chat-content">
+  <div class="messages-container">
+    <div *ngFor="let msg of messages" 
+         [ngClass]="{'message-container': true, 'user-message': msg.sender === 'Usuario', 'bot-message': msg.sender === 'Bot'}">
+      <div class="message-bubble">
+        <div class="message-sender">
+          {{ msg.sender }}
+        </div>
+        <div class="message-text">
+          {{ msg.message }}
+        </div>
+        <div class="message-time">
+          {{ msg.time | date:'shortTime' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item>
+      <ion-input 
+        [(ngModel)]="message" 
+        placeholder="Escribe tu mensaje..."
+        (keyup.enter)="sendMessage()"
+      ></ion-input>
+      <ion-button slot="end" (click)="sendMessage()" [disabled]="!message.trim()">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chat de Emergencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="chat-content">
+  <div class="messages-container">
+    <div *ngFor="let msg of messages" 
+         [ngClass]="{'message-container': true, 'user-message': msg.sender === 'Usuario', 'bot-message': msg.sender === 'Seguridad'}">
+      <div class="message-bubble">
+        <div class="message-sender">{{ msg.sender }}</div>
+        <div class="message-text">{{ msg.message }}</div>
+        <div class="message-time">{{ msg.time | date:'shortTime' }}</div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="input-container">
+      <ion-input 
+        [(ngModel)]="newMessage" 
+        placeholder="Escribe tu mensaje..." 
+        (keyup.enter)="sendMessage()"
+      ></ion-input>
+      <ion-button (click)="sendMessage()" [disabled]="!newMessage">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
